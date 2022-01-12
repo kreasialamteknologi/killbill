@@ -1220,6 +1220,7 @@ public class TestIntegrationBase extends BeatrixTestSuiteWithEmbeddedDB implemen
         private boolean isZeroAmountUsageDisabled;
         private UsageDetailMode detailMode;
         private Period maxInvoiceLimit;
+        private int maxRawUsagePreviousPeriod;
 
         public ConfigurableInvoiceConfig(final InvoiceConfig defaultInvoiceConfig) {
             this.defaultInvoiceConfig = defaultInvoiceConfig;
@@ -1228,6 +1229,7 @@ public class TestIntegrationBase extends BeatrixTestSuiteWithEmbeddedDB implemen
             isZeroAmountUsageDisabled = defaultInvoiceConfig.isUsageZeroAmountDisabled();
             detailMode = defaultInvoiceConfig.getItemResultBehaviorMode();
             maxInvoiceLimit = defaultInvoiceConfig.getMaxInvoiceLimit();
+            maxRawUsagePreviousPeriod = defaultInvoiceConfig.getMaxRawUsagePreviousPeriod();
         }
 
         @Override
@@ -1296,12 +1298,16 @@ public class TestIntegrationBase extends BeatrixTestSuiteWithEmbeddedDB implemen
 
         @Override
         public int getMaxRawUsagePreviousPeriod() {
-            return defaultInvoiceConfig.getMaxRawUsagePreviousPeriod();
+            return maxRawUsagePreviousPeriod;
         }
 
         @Override
         public int getMaxRawUsagePreviousPeriod(final InternalTenantContext tenantContext) {
             return defaultInvoiceConfig.getMaxRawUsagePreviousPeriod();
+        }
+
+        public void setMaxRawUsagePreviousPeriod(int maxRawUsagePreviousPeriod) {
+            this.maxRawUsagePreviousPeriod = maxRawUsagePreviousPeriod;
         }
 
         @Override
